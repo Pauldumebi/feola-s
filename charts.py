@@ -1,6 +1,7 @@
 from tkinter import *
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+import random
 
 def draw_canvas(fig, title):
     newWindow = Toplevel()
@@ -20,7 +21,7 @@ def draw_canvas(fig, title):
     canvas.get_tk_widget().pack(side=TOP, fill=BOTH) 
     
 
-def bar_chart(title, title_one , title_two, data, x, y, ax_legend, plot_label_one, ylabel, legends):
+def area_chart(title, title_one , title_two, data, x, y, ax_legend, plot_label_one, ylabel, legends):
     
     fig, (ax0, ax1) = plt.subplots(nrows=2, figsize=(10, 10), sharex=True)
     fig.suptitle(title)
@@ -52,3 +53,33 @@ def group_bar_chart( title, data, x, ylabel, legend):
     ax.legend(legend)
     
     draw_canvas(fig, title)
+
+def pie_chart(title, data, labels):
+    fig, ax = plt.subplots(figsize=(10, 10))
+    ax.pie(data, labels=labels, autopct='%.1f%%',
+        wedgeprops={'linewidth': 3.0, 'edgecolor': 'white'},
+        textprops={'size': 'x-large'})
+    ax.set_title(title, fontsize=14)
+
+    draw_canvas(fig, title)
+    
+def colored_bar_chart(df, title, first_label, second_label):
+    n = df[first_label].unique().__len__()+1
+    all_colors = list(plt.cm.colors.cnames.keys())
+    random.seed(100)
+    c = random.choices(all_colors, k=n)
+
+    # Plot Bars
+    plt.figure(figsize=(16,10), dpi= 80)
+    plt.bar(df[first_label], df[second_label], color=c, width=.5)
+    for i, val in enumerate(df[second_label].values):
+        plt.text(i, val, float(val), horizontalalignment='center', verticalalignment='bottom', fontdict={'fontweight':500, 'size':12})
+
+    # Decoration
+    plt.gca().set_xticklabels(df[first_label], rotation=60, horizontalalignment= 'right')
+    plt.title(title, fontsize=22)
+    plt.ylabel('Cases')
+    # fig = plt
+    plt.show()
+    # draw_canvas(plt.show(), title)
+    
