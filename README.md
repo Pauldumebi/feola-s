@@ -1,0 +1,1 @@
+- Install all the necessary packages, Open the project folder in **Command Prompt** and type `python -m pip install -r requirements.txt`. For **Mac** type `python3 -m pip install -r requirements.txt`.
