@@ -2,18 +2,21 @@ from tkinter import *
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import random
+import numpy as np
+import seaborn as sns
+import squarify
 
 def draw_canvas(fig, title):
-    newWindow = Toplevel()
-    newWindow.geometry("+%d+%d" % (250, 10))
-    newWindow.title(title)
+    new_window = Toplevel()
+    new_window.geometry("+%d+%d" % (250, 10))
+    new_window.title(title)
 
-    canvas = FigureCanvasTkAgg(fig, master=newWindow)
+    canvas = FigureCanvasTkAgg(fig, master=new_window)
     canvas.draw()
     canvas.get_tk_widget().pack(side=TOP, fill=BOTH)
 
     # creating the Matplotlib toolbar
-    toolbar = NavigationToolbar2Tk(canvas, newWindow)
+    toolbar = NavigationToolbar2Tk(canvas, new_window)
     toolbar.update()
     toolbar.pack(side=TOP, fill=X)
     
@@ -38,19 +41,6 @@ def area_chart(title, title_one , title_two, data, x, y, ax_legend, plot_label_o
     ax1.set(ylabel=ylabel)
     handles, labels = ax1.get_legend_handles_labels()
     ax1.legend(handles, legends)
-    
-    draw_canvas(fig, title)
-    
-    
-def group_bar_chart( title, data, x, ylabel, legend):
-    fig, ax = plt.subplots(nrows=1, figsize=(10, 10), sharex=True)
-    ax.set(title=title)
-    data.plot.bar( x=x, stacked=False, ax=ax)
-    for label in ax.get_xticklabels():
-        label.set_rotation(0)
-
-    ax.set(ylabel=ylabel)
-    ax.legend(legend)
     
     draw_canvas(fig, title)
 
@@ -83,3 +73,59 @@ def colored_bar_chart(df, title, first_label, second_label):
     plt.show()
     # draw_canvas(plt.show(), title)
     
+def donut_chart(title, values, labels):
+    # colors
+    colors = ['#FF0000', '#0000FF', '#FFFF00', '#ADFF2F']
+    # explosion
+    explode = (0.05, 0.05, 0.05, 0.05)
+    
+    # Pie Chart
+    plt.pie(values, colors=colors, labels=labels, autopct='%1.1f%%', pctdistance=0.85, explode=explode)
+    
+    # draw circle
+    centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+    fig = plt.gcf()
+    
+    # Adding Circle in Pie chart
+    fig.gca().add_artist(centre_circle)
+    
+    draw_canvas(fig, title)
+    
+def scatter_plot(title, x, y):
+    colors = np.array(["purple","beige","brown","cyan","magenta"])
+
+    plt.scatter(x, y, c=colors)
+    plt.title(title, fontsize=22)
+    plt.show()
+
+def horizontal_lollipop(title, df, df_first, df_second, label_one, label_two, xlabel, ylabel, yticks):
+    my_range=range(1,len(df.index)+1)
+    
+    # The horizontal plot is made using the hline function
+    plt.hlines(y=my_range, xmin=df_first, xmax=df_second, color='grey', alpha=0.4)
+    plt.scatter(df_first, my_range, color='skyblue', alpha=1, label=label_one)
+    plt.scatter(df_second, my_range, color='green', alpha=0.4 , label=label_two)
+    plt.legend()
+    
+    # Add title and axis names
+    plt.yticks(my_range, yticks)
+    plt.title(title, loc='left')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+
+    # Show the graph
+    plt.show()
+    
+def tree_map(title, size, labels ):
+    
+    plt.close()
+    colors=['#efe598','#172d65','#f9dc5c','#e8ac63','#e76f51','#ef233c','#b7094c', '#c7294c', '#b2494c', '#28094d', '#b7015c'] #color palette
+    fig = plt.gcf()
+    fig.set_size_inches(12, 7.5)
+    sns.set_style(style="whitegrid") # set seaborn plot style
+    sizes= size
+    label= labels
+    squarify.plot(sizes=sizes, label=label, alpha=0.6,color=colors).set(title=title)
+    plt.title(title, fontsize=14, fontweight="bold")
+    plt.axis('off')
+    draw_canvas(fig, title)

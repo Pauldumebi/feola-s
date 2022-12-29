@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from helpers.form_validator import form_validator
 from tkinter import messagebox
-from charts import area_chart, group_bar_chart, colored_bar_chart, pie_chart
+from charts import area_chart, tree_map, colored_bar_chart, pie_chart
 
 covid_data_frame = pd.read_csv('specimenDate_ageDemographic-unstacked.csv', low_memory=False)
 
@@ -106,27 +106,16 @@ def plot_total_no_of_cases_each_month( start_month, end_month ):
         #Get values between start and end date.
         covid_data = covid_data_frame.loc[(covid_data_frame['date'] >= start_date) & (covid_data_frame['date'] <= end_date)]
         covid_data = covid_data.groupby(covid_data['date'].dt.strftime('%m-%y')).agg(total_cases = ('newCasesBySpecimenDate-Total' , 'sum'))
-        # covid_data.set_index('date')
-        # covid_data = covid_data.groupby([lambda x: x.year, lambda x: x.month]).sum()
-        # data = data.groupby(["date"], as_index=False)[["newCasesBySpecimenDate-Total", "%changeInfectionRate-Total"]].sum()
-        # covid_data = covid_data.groupby(covid_data.date.dt.month)['newCasesBySpecimenDate-0_59', 'newCasesBySpecimenDate-60+'].sum()
-        # covid_data['date'] = pd.to_datetime(
-        # arg=covid_data['date'],
-        # format='%d-%b-%y' # Assuming dd-Mon-yy format
-        # )
-
-        # # Group by year and month
-        # covid_data.groupby(
-        # [
-        #     covid_data['date'].dt.year,
-        #     covid_data['date'].dt.month 
-        # ]
-        # ).sum()
-        # covid_data = covid_data.groupby(pd.TimeGrouper('M'))[['newCasesBySpecimenDate-0_59', 'newCasesBySpecimenDate-60+']].sum()
-        # data = data.sort_values(['newCasesBySpecimenDate-0_59', 'newCasesBySpecimenDate-60+'], ascending=False)
-        # covid_data = covid_data[["date","newCasesBySpecimenDate-0_59","newCasesBySpecimenDate-60+"]]
-        print(covid_data['date'])
-        # group_bar_chart( title, covid_data, "date", "Cases", ["Age Group 0-59", "Age Group 60+"])
+        
+        # reset index to get grouped columns back
+        covid_data = covid_data.reset_index()
+        
+        print(covid_data, 'data')
+        print(covid_data["date"], 'date')
+        print(covid_data["total_cases"], 'total_cases')
+        labels = covid_data.apply(lambda x: str(x[0]) + "\n (" + str(x[1]) + ")", axis=1)
+        tree_map(title, covid_data["total_cases"], labels )
+        
     
 def plot_areas_with_highest_cases(start_day, start_month, start_year):
     date = form_validator(start_day, end_day="1", start_month=start_month, start_year=start_year, end_month="December", end_year="2020")
