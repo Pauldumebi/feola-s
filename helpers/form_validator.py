@@ -1,7 +1,5 @@
 from tkinter import messagebox
 import datetime as dt
-# from utils.filterParams import monthList, yearList, dayList
-# from utils.monthsDict import monthsDict
 
 def month_calendar():
 
@@ -37,17 +35,13 @@ def form_validator(
         )
         end_date = dt.datetime(
             day=int(end_day), month=int(month_calendar()[end_month]), year=int(end_year)
-        )
-        # maxDate = dt.datetime(day=int(dayList()[0]), month=int(monthsDict()[monthList()[-1]]), year=int(yearList()[0]))     
+        ) 
     except:
         messagebox.showinfo("showinfo", "You have selected an invalid date, please select again")
     
     
     if start_date > end_date:
        return messagebox.showinfo("showinfo", "You have selected an invalid date, start date cannot be ahead of end date!")
-
-    # elif (start_date > maxDate) or (end_date > maxDate):
-    #     return messagebox.showinfo("showinfo", "You have selected an invalid date, select again")
     
     else:
         return start_date, end_date
