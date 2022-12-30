@@ -109,10 +109,6 @@ def plot_total_no_of_cases_each_month( start_month, end_month ):
         
         # reset index to get grouped columns back
         covid_data = covid_data.reset_index()
-        
-        print(covid_data, 'data')
-        print(covid_data["date"], 'date')
-        print(covid_data["total_cases"], 'total_cases')
         labels = covid_data.apply(lambda x: str(x[0]) + "\n (" + str(x[1]) + ")", axis=1)
         tree_map(title, covid_data["total_cases"], labels )
         

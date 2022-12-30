@@ -18,8 +18,6 @@ def police_force():
         return all_police_force
     
 def get_cases(selected_police_force, date):
-    # print(police_force, 'police_force')
-    # print(date, 'date')
     all_police_force_cache = police_force()
     # cache request of police force cases by date
     target_key = selected_police_force + "-" + date
