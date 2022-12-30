@@ -117,7 +117,7 @@ def ethnicity(frame_1):
 def by_gender(frame_1):
     destroy(frame_1)
     
-    label(frame_1, "Months", x=50, y=50)
+    label(frame_1, "Month", x=50, y=50)
     month_list = tkt.StringVar(frame_1)
     month_list.set(months[0]) 
     dropdown(frame_1, month_list, months, x=50, y=70)
@@ -132,7 +132,7 @@ def by_gender(frame_1):
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     
     all_police_forces = list(police_force().keys())
-    label(frame_1, "First Police Force", x=50, y=190)
+    label(frame_1, "Police Force", x=50, y=190)
     police_force_list = tkt.StringVar(frame_1)
     police_force_list.set(all_police_forces[0])
     dropdown(frame_1, police_force_list, all_police_forces, x=50, y=210)
