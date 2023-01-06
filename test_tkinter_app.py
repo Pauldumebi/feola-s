@@ -4,13 +4,8 @@ import unittest
 import pytest
 from covid.home import total_no_of_cases_each_day, areas_with_highest_cases, comparing_two_areas, total_no_of_cases_each_month
 from stop_and_search.home import stop_and_search_by_months, compare_stop_and_search_results_for_two_areas, ethnicity, by_gender
-import numpy as np
-from stop_and_search.request import police_force
-# from modules.covid.covidFunc import plotDailyCases, plotTopFiveRegionWithHighestCases, plotTwoRegions, plotByMonths
-# from modules.stopSearch import requests
-# from modules.stopSearch.stopSearchFunc import validateDate, ageRange, searchPurpose, ethnicity, outcome, gender
-import pandas as pd
-
+from stop_and_search.request import police_force, get_cases
+import requests
 import warnings
      
 class helpers_modules(unittest.TestCase): # Test all functions in the helper folder
@@ -102,6 +97,14 @@ class stop_and_search_modules(unittest.TestCase):
     def test_police_force(self): # tests return variable is a dictionary
         police_list = police_force()
         self.assertIsInstance(police_list, dict)
+        
+    def test_fetch_stop_and_search_cases(self): # tests the if stop & search api returns a status code of 200
+        response = requests.get("https://data.police.uk/api/stops-force?force=bedfordshire&date=2021-06")
+        self.assertEqual(response.status_code, 200)
+        
+    def test_fetch_cases_request(self): # tests that a tuple is returned 
+        response = get_cases("Cambridgeshire Constabulary", "2021-06")
+        self.assertIsInstance(response, tuple)
          
 class covid_modules(unittest.TestCase):
 
