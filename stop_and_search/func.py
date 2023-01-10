@@ -81,8 +81,6 @@ def plot_compare_stop_and_search_results_for_two_areas(year, first_police_force,
     )
     
     title = "Arrest of 18-24 years between " + first_police_force + " \nand " + second_police_force + " in summer months of " + year
-    print(stop_and_search_df_first)
-    print(stop_and_search_df_second)
     horizontal_lollipop(
         title, 
         stop_and_search_df_first, 
@@ -100,6 +98,7 @@ def plot_ethnicity(month, year, selected_police_force):
     result = stop_and_search_df.groupby(["officer_defined_ethnicity"], as_index=False)[["involved_person"]].count()
     title = "Stop and Search Cases Breakdown by Ethnicity \nfor " + selected_police_force + " in " + month + ", " + year
     scatter_plot(title, result["officer_defined_ethnicity"], result["involved_person"])
+    print(result, 'result')
 
 def plot_by_gender(month, year, selected_police_force):    
 

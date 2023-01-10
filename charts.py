@@ -92,10 +92,13 @@ def donut_chart(title, values, labels):
     draw_canvas(fig, title)
     
 def scatter_plot(title, x, y):
-    colors = np.array(["purple","beige","brown","cyan","magenta"])
+    if len(x) == 4:
+        colors = np.array(["purple","green","brown","cyan"])
+    elif len(x) == 5:
+        colors = np.array(["purple","green","brown","cyan","magenta"])
 
     plt.scatter(x, y, c=colors)
-    plt.title(title, fontsize=22)
+    plt.title(title, fontsize=12)
     plt.show()
 
 def horizontal_lollipop(title, df, df_first, df_second, label_one, label_two, xlabel, ylabel, yticks):
