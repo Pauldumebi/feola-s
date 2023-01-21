@@ -9,30 +9,20 @@ days = list(range(1, 32))
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 stop_and_search_year_list = ["2020", "2021", "2022"]
 
+def label_option (frame, text, options,label_x, label_y, x, y):
+    label(frame,text, x=label_x, y=label_y)
+    option = tkt.StringVar(frame)
+    option.set(options[0]) 
+    dropdown(frame, option, options, x=x, y=y)
+    return option
+
 def stop_and_search_by_months(frame_1):
     destroy(frame_1)
     
-    label(frame_1, "Month", x=50, y=50)
-    month = tkt.StringVar(frame_1)
-    month.set(months[0]) 
-    dropdown(frame_1, month, months, x=50, y=70)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-    label(frame_1, "Year", x=50, y=120)
-    year = tkt.StringVar(frame_1)
-    year.set(stop_and_search_year_list[0])
-    dropdown(frame_1, year, stop_and_search_year_list, x=50, y=140)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    
+    month = label_option(frame_1, "Month", months, label_x = 50, label_y=50, x=50, y=70)
+    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, x=50, y=140) 
     all_police_forces = list(police_force().keys())
-    label(frame_1, "Police Force", x=50, y=190)
-    police_force_list = tkt.StringVar(frame_1)
-    police_force_list.set(all_police_forces[0])
-    dropdown(frame_1, police_force_list, all_police_forces, x=50, y=210)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, x=50, y=210)
     
     func = lambda: plot_stop_and_search_by_months(
         month.get(),
@@ -45,34 +35,11 @@ def stop_and_search_by_months(frame_1):
 def compare_stop_and_search_results_for_two_areas(frame_1):
     destroy(frame_1)
     
-    label(frame_1, "Year", x=50, y=50)
-    year = tkt.StringVar(frame_1)
-    year.set(stop_and_search_year_list[0]) 
-    dropdown(frame_1, year, stop_and_search_year_list, x=50, y=70)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-    label(frame_1, "Year", x=50, y=120)
-    year = tkt.StringVar(frame_1)
-    year.set(stop_and_search_year_list[0])
-    dropdown(frame_1, year, stop_and_search_year_list, x=50, y=140)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=50, x=50, y=70) 
     all_police_forces = list(police_force().keys())
-    label(frame_1, "First Police Force", x=50, y=120)
-    first_police_force_list = tkt.StringVar(frame_1)
-    first_police_force_list.set(all_police_forces[0])
-    dropdown(frame_1, first_police_force_list, all_police_forces, x=50, y=140)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    
+    first_police_force_list = label_option(frame_1, "First Police Force", all_police_forces, label_x = 50, label_y=120, x=50, y=140) 
     all_police_forces = list(police_force().keys())
-    label(frame_1, "Second Police Force", x=50, y=190)
-    second_police_force_list = tkt.StringVar(frame_1)
-    second_police_force_list.set(all_police_forces[1])
-    dropdown(frame_1, second_police_force_list, all_police_forces, x=50, y=210)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    second_police_force_list = label_option(frame_1, "Second Police Force", all_police_forces, label_x = 50, label_y=190, x=50, y=210) 
     
     func = lambda: plot_compare_stop_and_search_results_for_two_areas(
         year.get(),
@@ -85,26 +52,10 @@ def compare_stop_and_search_results_for_two_areas(frame_1):
 def ethnicity(frame_1):
     destroy(frame_1)
     
-    label(frame_1, "Month", x=50, y=50)
-    months_list = tkt.StringVar(frame_1)
-    months_list.set(months[0]) 
-    dropdown(frame_1, months_list, months, x=50, y=70)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-    label(frame_1, "Year", x=50, y=120)
-    year = tkt.StringVar(frame_1)
-    year.set(stop_and_search_year_list[0])
-    dropdown(frame_1, year, stop_and_search_year_list, x=50, y=140)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    months_list = label_option(frame_1, "Month", months, label_x = 50, label_y=50, x=50, y=70)
+    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, x=50, y=140) 
     all_police_forces = list(police_force().keys())
-    label(frame_1, "Police Force", x=50, y=190)
-    police_force_list = tkt.StringVar(frame_1)
-    police_force_list.set(all_police_forces[0])
-    dropdown(frame_1, police_force_list, all_police_forces, x=50, y=210)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, x=50, y=210)
     
     func = lambda: plot_ethnicity(
         months_list.get(),
@@ -117,27 +68,10 @@ def ethnicity(frame_1):
 def by_gender(frame_1):
     destroy(frame_1)
     
-    label(frame_1, "Month", x=50, y=50)
-    month_list = tkt.StringVar(frame_1)
-    month_list.set(months[0]) 
-    dropdown(frame_1, month_list, months, x=50, y=70)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-    label(frame_1, "Year", x=50, y=120)
-    year = tkt.StringVar(frame_1)
-    year.set(stop_and_search_year_list[0])
-    dropdown(frame_1, year, stop_and_search_year_list, x=50, y=140)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    
+    month_list = label_option(frame_1, "Month", months, label_x = 50, label_y=50, x=50, y=70)
+    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, x=50, y=140) 
     all_police_forces = list(police_force().keys())
-    label(frame_1, "Police Force", x=50, y=190)
-    police_force_list = tkt.StringVar(frame_1)
-    police_force_list.set(all_police_forces[0])
-    dropdown(frame_1, police_force_list, all_police_forces, x=50, y=210)
-    
-    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, x=50, y=210)
     
     func = lambda: plot_by_gender(
         month_list.get(),
