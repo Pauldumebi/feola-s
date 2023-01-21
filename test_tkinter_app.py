@@ -24,12 +24,12 @@ class helpers_modules(unittest.TestCase): # Test all functions in the helper fol
         self.main.destroy()
         
     def test_label(self):    # tests if a label widget is returned
-        tk_label = label.label(self.main, "Test", 0, 0).winfo_class()
+        tk_label = label(self.main, "Test", 0, 0).winfo_class()
         self.assertEqual(tk_label, "Label")
         
     
     def test_dropdown(self): # tests if a Menubutton widget is returned
-        dropDownMenu = dropdown.dropdown(self.main, 10, ["One", "Two"], 0, 0).winfo_class()
+        dropDownMenu = dropdown(self.main, 10, ["One", "Two"], 0, 0).winfo_class()
         expected = "Menubutton"
         self.assertEqual(dropDownMenu, expected)
         

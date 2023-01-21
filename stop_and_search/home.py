@@ -11,10 +11,10 @@ stop_and_search_year_list = ["2020", "2021", "2022"]
 def stop_and_search_by_months(frame_1):
     destroy(frame_1)
     
-    month = label_option(frame_1, "Month", months, label_x = 50, label_y=50, x=50, y=70)
-    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, x=50, y=140) 
+    month = label_option(frame_1, "Month", months, label_x = 50, label_y=50, dropdown_x=50, dropdown_y=70)
+    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, dropdown_x=50, dropdown_y=140) 
     all_police_forces = list(police_force().keys())
-    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, x=50, y=210)
+    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, dropdown_x=50, dropdown_y=210)
     
     func = lambda: plot_stop_and_search_by_months(
         month.get(),
@@ -27,11 +27,11 @@ def stop_and_search_by_months(frame_1):
 def compare_stop_and_search_results_for_two_areas(frame_1):
     destroy(frame_1)
     
-    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=50, x=50, y=70) 
+    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=50, dropdown_x=50, dropdown_y=70) 
     all_police_forces = list(police_force().keys())
-    first_police_force_list = label_option(frame_1, "First Police Force", all_police_forces, label_x = 50, label_y=120, x=50, y=140) 
+    first_police_force_list = label_option(frame_1, "First Police Force", all_police_forces, label_x = 50, label_y=120, dropdown_x=50, dropdown_y=140) 
     all_police_forces = list(police_force().keys())
-    second_police_force_list = label_option(frame_1, "Second Police Force", all_police_forces, label_x = 50, label_y=190, x=50, y=210) 
+    second_police_force_list = label_option(frame_1, "Second Police Force", all_police_forces, label_x = 50, label_y=190, dropdown_x=50, dropdown_y=210) 
     
     func = lambda: plot_compare_stop_and_search_results_for_two_areas(
         year.get(),
@@ -44,10 +44,10 @@ def compare_stop_and_search_results_for_two_areas(frame_1):
 def ethnicity(frame_1):
     destroy(frame_1)
     
-    months_list = label_option(frame_1, "Month", months, label_x = 50, label_y=50, x=50, y=70)
-    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, x=50, y=140) 
+    months_list = label_option(frame_1, "Month", months, label_x = 50, label_y=50, dropdown_x=50, dropdown_y=70)
+    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, dropdown_x=50, dropdown_y=140) 
     all_police_forces = list(police_force().keys())
-    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, x=50, y=210)
+    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, dropdown_x=50, dropdown_y=210)
     
     func = lambda: plot_ethnicity(
         months_list.get(),
@@ -60,10 +60,10 @@ def ethnicity(frame_1):
 def by_gender(frame_1):
     destroy(frame_1)
     
-    month_list = label_option(frame_1, "Month", months, label_x = 50, label_y=50, x=50, y=70)
-    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, x=50, y=140) 
+    month_list = label_option(frame_1, "Month", months, label_x = 50, label_y=50, dropdown_x=50, dropdown_y=70)
+    year = label_option(frame_1, "Year", stop_and_search_year_list, label_x = 50, label_y=120, dropdown_x=50, dropdown_y=140) 
     all_police_forces = list(police_force().keys())
-    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, x=50, y=210)
+    police_force_list = label_option(frame_1, "Police Force", all_police_forces, label_x = 50, label_y=190, dropdown_x=50, dropdown_y=210)
     
     func = lambda: plot_by_gender(
         month_list.get(),
