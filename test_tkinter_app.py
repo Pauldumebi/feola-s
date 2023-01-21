@@ -1,5 +1,6 @@
 from app import main_app
-from helpers import dropdown, label, regions, form_validator
+from helpers import regions, form_validator
+from helpers.label_option import dropdown, label
 import unittest
 import pytest
 from covid.home import total_no_of_cases_each_day, areas_with_highest_cases, comparing_two_areas, total_no_of_cases_each_month

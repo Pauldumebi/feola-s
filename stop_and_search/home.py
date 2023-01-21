@@ -1,6 +1,5 @@
 import tkinter as tkt
-from helpers.label import label
-from helpers.dropdown import dropdown
+from helpers.label_option import label_option
 from stop_and_search.func import plot_stop_and_search_by_months, plot_compare_stop_and_search_results_for_two_areas, plot_ethnicity, plot_by_gender
 from helpers.destroy import destroy
 from stop_and_search.request import police_force
@@ -8,13 +7,6 @@ from stop_and_search.request import police_force
 days = list(range(1, 32))
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 stop_and_search_year_list = ["2020", "2021", "2022"]
-
-def label_option (frame, text, options,label_x, label_y, x, y):
-    label(frame,text, x=label_x, y=label_y)
-    option = tkt.StringVar(frame)
-    option.set(options[0]) 
-    dropdown(frame, option, options, x=x, y=y)
-    return option
 
 def stop_and_search_by_months(frame_1):
     destroy(frame_1)

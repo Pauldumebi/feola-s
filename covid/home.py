@@ -1,6 +1,5 @@
 import tkinter as tkt
-from helpers.label import label
-from helpers.dropdown import dropdown
+from helpers.label_option import label_option
 from covid.func import plot_total_no_of_cases_each_day, plot_total_no_of_cases_each_month, plot_areas_with_highest_cases, plot_comparing_two_areas
 from helpers.regions import region_list
 from helpers.destroy import destroy
@@ -9,12 +8,7 @@ days = list(range(1, 32))
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 year = [2020]
 
-def label_option (frame, text, options,label_x, label_y, x, y):
-    label(frame,text, x=label_x, y=label_y)
-    option = tkt.StringVar(frame)
-    option.set(options[0]) 
-    dropdown(frame, option, options, x=x, y=y)
-    return option
+
 
 def total_no_of_cases_each_day(frame_1): 
     destroy(frame_1)
